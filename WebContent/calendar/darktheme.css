@@ -1,0 +1,35 @@
+@charset "UTF-8";
+
+body.dark{
+	background-color: black;
+}
+
+.dark table{
+	background-color: rgba(255,255,255,0.3);
+}
+
+.dark .header i{
+	color:white;
+}
+
+.dark .modal__overlay{
+	background-color:rgba(255,255,255,0.3);
+	width:100%;
+	height:100%;
+	position:absolute;
+	
+}
+
+.dark .myYearAndMonth{
+	color:white;
+}
+
+.dark #theme{
+
+	color:white;
+}
+
+.dark #viewdata{
+	
+	color:white;
+}

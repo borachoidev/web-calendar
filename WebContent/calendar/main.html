@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<!-- main script -->
+<script src="../calendar/mainScript.js" defer></script>
+<!-- style sheet -->
+<link rel="stylesheet" href="../calendar/style.css">
+<link rel="stylesheet" href="../calendar/darktheme.css">
+<link rel="stylesheet" href="../calendar/whitetheme.css">
+<link rel="stylesheet" href="../calendar/startheme.css">
+<!-- import style -->
+<link
+	href="https://fonts.googleapis.com/css2?family=Cute+Font&family=Leckerli+One&family=Over+the+Rainbow&family=Roboto+Slab&display=swap"
+	rel="stylesheet">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css"
+	integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
+<title></title>
+<script type="text/javascript">
+	
+</script>
+</head>
+<body>
+	<div class="main">
+		<div class='header'>
+			<span class='prev'><i class="fas fa-chevron-left"></i></span>
+			<div class='myYearAndMonth' id="myYAM">10</div>
+			<span class='next'><i class="fas fa-chevron-right"></i></span>
+		</div>
+		<div class="myCalendar" id="myCalendar"></div>
+	</div>
+	<!-- theme set -->
+	<button type="button" id="theme">테마설정</button>
+	<div class='modal theme_set hidden'>
+		<div class='modal__overlay'>
+			<div class='modal__content'>
+				<div class='control'>
+					<button type="button" class="btn_close">
+						<i class="fas fa-times-circle"></i>
+					</button>
+				</div>
+				<div class='theme_radio'>
+					<div class="themes">
+						<label><input type="radio" name="theme" value="default">기본</label><img src='../theme/default/1.gif'>
+					</div>
+					<div class="themes">
+						<label><input type="radio" name="theme" value="white">화이트</label><img src='../theme/white/1.gif'>
+					</div>
+					<div class="themes">
+						<label><input type="radio" name="theme" value="dark">다크</label><img src='../theme/dark/1.gif'>
+					</div>
+					<div class="themes">
+						<label><input type="radio" name="theme" value="star_sign">별자리</label><img src='../theme/star_sign/thum.png'>
+					</div>
+				</div>
+
+			</div>
+
+		</div>
+	</div>
+
+	<!-- veiw all datas  -->
+	<button type="button" id="viewdata">일정보기</button>
+	<div class='modal schedule_m hidden'>
+		<div class='modal__overlay'>
+			<div class='modal__content'>
+				<div class='controls'>
+
+					<div class='sort'>
+						<span class='sort_defalut'>날짜순</span> <span style='color: #ddd;'>|</span> <span class='sort_colors scheduleicon'
+							style='background-color: #FF7E79;'></span> <span class='sort_colors scheduleicon'
+							style='background-color: #FFD479;'></span> <span class='sort_colors scheduleicon'
+							style='background-color: #FFFC79;'></span> <span class='sort_colors scheduleicon'
+							style='background-color: #D4FB79;'></span> <span class='sort_colors scheduleicon'
+							style='background-color: #76D6FF;'></span> <span class='sort_colors scheduleicon'
+							style='background-color: #7A81FF;'></span> <span class='sort_colors scheduleicon'
+							style='background-color: #D783FF;'></span>
+					<span style='color: #ddd;'>|</span> <span class='sort_preall'>이전 일정 모두보기</span> 
+					</div>
+					<button type="button" class="btn_close">
+						<i class="fas fa-times-circle"></i>
+					</button>
+				</div>
+				<div class='all_sch'></div>
+			</div>
+		</div>
+	</div>
+
+	<!-- add modal -->
+	<div class='modal add hidden'>
+		<div class='modal__overlay'>
+			<div class='modal__content'>
+				<button type="button" class="btn_close">
+					<i class="fas fa-times-circle"></i>
+				</button>
+				<div class='add_form'>
+					<div class='add_colors'>
+						<span class='colors' style='background-color: #FF7E79;'></span> <span class='colors'
+							style='background-color: #FFD479;'></span> <span class='colors' style='background-color: #FFFC79;'></span> <span
+							class='colors' style='background-color: #D4FB79;'></span> <span class='colors' style='background-color: #76D6FF;'></span>
+						<span class='colors' style='background-color: #7A81FF;'></span> <span class='colors'
+							style='background-color: #D783FF;'></span>
+					</div>
+					<input type="text" placeholder='새로운 일정' id="add_title" /> <input type="date" id="add_date">
+					<textarea cols='30' rows='5' placeholder='메모' id="add_memo" style="resize: none"></textarea>
+				</div>
+
+				<button type="button" id="btn_add">추가</button>
+
+			</div>
+		</div>
+	</div>
+	<!-- update modal -->
+	<div class="modal update hidden">
+		<div class="modal__overlay">
+			<div class="modal__content">
+				<button type="button" class="btn_close_up">
+					<i class="fas fa-times-circle"></i>
+				</button>
+				<div class="up_form" num="">
+					<div class="up_colors">
+						<span class='colors' name='rgb(255, 126, 121)' style='background-color: #FF7E79;'></span> <span class='colors'
+							name='rgb(255, 212, 121)' style='background-color: #FFD479;'></span> <span class='colors'
+							name='rgb(255, 252, 121)' style='background-color: #FFFC79;'></span> <span class='colors'
+							name='rgb(212, 251, 121)' style='background-color: #D4FB79;'></span> <span class='colors'
+							name='rgb(118, 214, 255)' style='background-color: #76D6FF;'></span> <span class='colors'
+							name='rgb(122, 129, 255)' style='background-color: #7A81FF;'></span> <span class='colors'
+							name='rgb(215, 131, 255)' style='background-color: #D783FF;'></span>
+					</div>
+					<input type="text" id="up_title" /> <input type="date" id="up_date" />
+					<textarea cols="30" rows="5" id="up_memo" style="resize: none"></textarea>
+				</div>
+
+				<button type="button" id="btn_up">수정</button>
+				<button type="button" id="btn_del">삭제</button>
+			</div>
+		</div>
+	</div>
+	<!-- tooltip -->
+	<div class="tooltip hidden"></div>
+</body>
+</html>

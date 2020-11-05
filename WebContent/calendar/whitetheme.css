@@ -1,0 +1,23 @@
+@charset "UTF-8";
+
+.white table{
+	background-color: rgba(0,0,0,0.3);
+}
+
+.white .myYearAndMonth{
+	color:black;
+}
+
+.white .header i{
+	color:black;
+}
+
+.white #theme{
+
+	color:black;
+}
+
+.white #viewdata{
+	
+	color:black;
+}
