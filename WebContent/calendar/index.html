@@ -5,7 +5,7 @@
 <!-- jQuery library -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <!-- main script -->
-<script src="../calendar/mainScript.js" defer></script>
+<script src="../calendar/main.js" defer></script>
 <!-- style sheet -->
 <link rel="stylesheet" href="../calendar/style.css">
 <link rel="stylesheet" href="../calendar/darktheme.css">
@@ -25,15 +25,18 @@
 <body>
 	<div class="main">
 		<div class='header'>
-			<span class='prev'><i class="fas fa-chevron-left"></i></span>
-			<div class='myYearAndMonth' id="myYAM">10</div>
-			<span class='next'><i class="fas fa-chevron-right"></i></span>
+			<span class='header__prev_btn'><i class="fas fa-chevron-left"></i></span>
+			<div class='header__title' id="myYAM">10</div>
+			<span class='header__next_btn'><i class="fas fa-chevron-right"></i></span>
 		</div>
 		<div class="myCalendar" id="myCalendar"></div>
 	</div>
-	<!-- theme set -->
+	<button type="button" id="viewdata">일정보기</button>
 	<button type="button" id="theme">테마설정</button>
-	<div class='modal theme_set hidden'>
+
+
+	<!-- theme set  modal-->
+	<div class='modal modal__theme hidden'>
 		<div class='modal__overlay'>
 			<div class='modal__content'>
 				<div class='control'>
@@ -61,9 +64,8 @@
 		</div>
 	</div>
 
-	<!-- veiw all datas  -->
-	<button type="button" id="viewdata">일정보기</button>
-	<div class='modal schedule_m hidden'>
+	<!-- veiw all datas  modal -->
+	<div class='modal modal__schedule hidden'>
 		<div class='modal__overlay'>
 			<div class='modal__content'>
 				<div class='controls'>
@@ -89,7 +91,7 @@
 	</div>
 
 	<!-- add modal -->
-	<div class='modal add hidden'>
+	<div class='modal hidden modal__add'>
 		<div class='modal__overlay'>
 			<div class='modal__content'>
 				<button type="button" class="btn_close">
@@ -113,7 +115,7 @@
 		</div>
 	</div>
 	<!-- update modal -->
-	<div class="modal update hidden">
+	<div class="modal modal__update hidden">
 		<div class="modal__overlay">
 			<div class="modal__content">
 				<button type="button" class="btn_close_up">
