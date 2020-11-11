@@ -1,67 +1,67 @@
 //달력 출력 변수
-let today = new Date();
+const today = new Date();
 //오늘 년월
-let currYear = today.getFullYear();
-let currMonth = today.getMonth() + 1;
-let currDay = today.getDate();
+const currYear = today.getFullYear();
+const currMonth = today.getMonth() + 1;
+const currDay = today.getDate();
 let myYear;
 let myMonth;
 let myWeek;
 let myDay;
-let weeks = ["S", "M", "T", "W", "T", "F", "S"];
+const weeks = ["S", "M", "T", "W", "T", "F", "S"];
 
 myYear = currYear;
 myMonth = currMonth;
 
-$(myYAM).html(myMonth + "," + myYear);
+$("#header_title").html(myMonth + "," + myYear);
 localsave("default");
 writeCalendar(myYear, myMonth);
 //이벤트
 
 // "<"(pre) button 클릭
-$("span.prev").click(function () {
+$("span.header__prev_btn").click(function () {
   myMonth--;
   if (myMonth == 0) {
     myMonth = 12;
     myYear--;
   }
-  $(myYAM).html(myMonth + "," + myYear);
+  $("#header_title").html(myMonth + "," + myYear);
   writeCalendar(myYear, myMonth);
 });
 
 // ">"(next) button 클릭
-$("span.next").click(function () {
+$("span.header__next_btn").click(function () {
   myMonth++;
   if (myMonth == 13) {
     myMonth = 1;
     myYear++;
   }
 
-  $(myYAM).html(myMonth + "," + myYear);
+  $("#header_title").html(myMonth + "," + myYear);
   writeCalendar(myYear, myMonth);
 });
 
 // 년월 클릭 현재 달로 이동//
-$("#myYAM").click(function () {
+$("#header_title").click(function () {
   myYear = currYear;
   myMonth = currMonth;
-  $(myYAM).html(myMonth + "," + myYear);
+  $("#header_title").html(myMonth + "," + myYear);
   writeCalendar(myYear, myMonth);
 });
 
 //theme 설정//
 $("button#theme").click(function () {
-  $(".theme_set").removeClass("hidden");
+  $(".modal__theme").removeClass("hidden");
 });
 $("button.themeclose").click(function () {
-  $(".theme_set").addClass("hidden");
+  $(".modal__theme").addClass("hidden");
 });
 
 $("input[name='theme']").change(function () {
   let theme = $(this).val();
   localsave(theme);
   localApply();
-  $(".theme_set").addClass("hidden");
+  $(".modal__theme").addClass("hidden");
   $("body").removeClass();
   $("body").addClass(theme);
 });
@@ -69,24 +69,24 @@ function localsave(theme) {
   localStorage.setItem("theme", theme);
 }
 function localApply() {
-  let ltheme = localStorage.theme;
+  let localtheme = localStorage.theme;
   let filetype;
   if (ltheme != "star_sign") {
     filetype = ".gif";
   } else {
     filetype = ".png";
   }
-  let src = "../theme/" + ltheme + "/" + myMonth + filetype;
-  $(myYAM).html("<img src='" + src + "'>" + myYear);
+  let src = "../theme/" + localtheme + "/" + myMonth + filetype;
+  $("#header_title").html("<img src='" + src + "'>" + myYear);
 }
 
 //view All
 $("#viewdata").click(function () {
-  $(".schedule_m").removeClass("hidden");
+  $(".modal__schedule").removeClass("hidden");
   viewAll();
 });
 $(".viewclose").click(function () {
-  $(".schedule_m").addClass("hidden");
+  $(".modal__schedule").addClass("hidden");
 });
 
 $(".sort_defalut").click(function () {
@@ -379,7 +379,7 @@ function viewAll() {
     dataType: "xml",
     success: function (data) {
       let p = "";
-      $(".all_sch").empty();
+      $(".all_schedule").empty();
       $(data)
         .find("cal")
         .each(function (i, element) {
@@ -411,7 +411,7 @@ function viewAll() {
           }
         });
 
-      $(".all_sch").append(p);
+      $(".all_schedule").append(p);
     },
   });
 }
@@ -423,7 +423,7 @@ function viewpreAll() {
     dataType: "xml",
     success: function (data) {
       let p = "";
-      $(".all_sch").empty();
+      $(".all_schedule").empty();
       $(data)
         .find("cal")
         .each(function (i, element) {
@@ -452,7 +452,7 @@ function viewpreAll() {
           }
         });
 
-      $(".all_sch").append(p);
+      $(".all_schedule").append(p);
     },
   });
 }
@@ -467,11 +467,11 @@ function sortColor(color) {
     },
     success: function (data) {
       let p = "";
-      $(".all_sch").empty();
+      $(".all_schedule").empty();
       let nullcheck = $(data).find("cal").text();
       if (nullcheck == "") {
         p = "<span>일정 없음</span>";
-        $(".all_sch").append(p);
+        $(".all_schedule").append(p);
       } else {
         $(data)
           .find("cal")
@@ -502,7 +502,7 @@ function sortColor(color) {
               }
             }
           });
-        $(".all_sch").append(p);
+        $(".all_schedule").append(p);
       }
     },
   });
